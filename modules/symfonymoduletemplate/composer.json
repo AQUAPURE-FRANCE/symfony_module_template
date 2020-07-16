@@ -1,0 +1,32 @@
+{
+  "name": "symfonymodule",
+  "description": "Symfony Module template",
+  "authors": [
+    {
+      "name": "Yurniel LAHERA VILLA",
+      "email": "development.app.tester@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "doctrine/orm": "*",
+    "symfony/webpack-encore-bundle": "^1.7",
+    "symfony/filesystem": "^5.0",
+    "dompdf/dompdf": "^0.8.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "SymfonyModule\\": "src/"
+    },
+    "classmap": [
+      "symfonymodule.php"
+    ],
+    "exclude-from-classmap": []
+  },
+  "config": {
+    "preferred-install": "dist",
+    "prepend-autoloader": false
+  },
+  "type": "prestashop-module",
+  "license": "<???>"
+}

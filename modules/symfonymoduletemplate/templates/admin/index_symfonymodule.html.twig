@@ -1,0 +1,14 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+
+{% form_theme quotationFilterForm 'bootstrap_4_layout.html.twig' %}
+
+ {% block content %}
+
+     <div class="quotation">
+        Hello
+     </div>
+ {% endblock %}
+
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('quotation-bundle/quotation-bundle.js') }}"></script>
+    {% endblock %}
