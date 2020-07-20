@@ -8,10 +8,10 @@ pour un client avant de passer commande d'un ou plusieurs produit·s.
 * Télécharger le projet
 * Supprimer le dossier `.git` pour supprimer l'historique
 * Déplacer le `.gitignore` à la racine du projet
-* Déplacer le dossier `quotation` dans le dossier `modules` de votre arborescence Prestashop
+* Déplacer le dossier `symfonymoduletemplate` dans le dossier `modules` de votre arborescence Prestashop
 
 ## Installation
-* Se déplacer dans le dossier `modules/quotation`
+* Se déplacer dans le dossier `modules/symfonymoduletemplate`
 * Exécuter `composer install`
 * Exécuter `npm install`
 * Exécuter `npm install --save-dev webpack`
@@ -19,8 +19,8 @@ pour un client avant de passer commande d'un ou plusieurs produit·s.
 * Exécuter `doctrine:schema:update --force`
 
 ## Administration
-* Renommer le dossier 'admin' dans le fichier 'quotation/webpack.config.js' par le nom de votre dossier admin de la racine de Prestashop.
-* Dans le répertoire 'quotation/assets/js/app.js', renommer les éléments (lignes '54' et '55') par le nom de votre dossier admin de la racine de Prestashop.
+* Renommer le dossier 'admin' dans le fichier 'symfonymoduletemplate/webpack.config.js' par le nom de votre dossier admin de la racine de Prestashop.
+* Dans le répertoire 'symfonymoduletemplate/assets/js/app.js', mettre à jour les paths avec le bon dossier admin
 
 ## Construit avec
 * Prestashop 1.7.6.3
@@ -28,8 +28,5 @@ pour un client avant de passer commande d'un ou plusieurs produit·s.
 * Symfony 3.4
 * Twig
 
-## Auteurs
-* Lionel DELAMARE
+## Auteur
 * Yurniel LAHERA VILLA   
-* Nolwenn SACHET  
-* Toua VA
