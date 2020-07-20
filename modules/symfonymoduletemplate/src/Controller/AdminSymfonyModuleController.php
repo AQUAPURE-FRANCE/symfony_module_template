@@ -4,31 +4,32 @@ namespace SymfonyModule\Controller;
 
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\HttpFoundation\Request;
+use SymfonyModule\Entity\SymfonyModule;
 use SymfonyModule\Form\SymfonyModuleType;
 
 class AdminSymfonyModuleController extends FrameworkBundleAdminController
 {
-    /**
-     * Fonction privée qui récupère toutes les données à partir du tableau 'symfonyModule_search'
-     */
-    private function getReq(Request $req)
-    {
-        return $req->query->all()['symfonyModule_search'];
-    }
-
     public function symfonyModuleIndex(Request $req)
     {
-        $symfonyModuleRepository = $this->get('symfonyModule_repository');
-        $symfonyModuleForm = $this->createForm(SymfonyModuleType::class);
-        $symfonyModuleForm->handleRequest($req);
+        $em = $this->getDoctrine()->getManager();
+        $object = new SymfonyModule();
 
-        if ($symfonyModuleForm->isSubmitted() && $symfonyModuleForm->isValid()) {
-           dump($symfonyModuleForm->getData());die;
+        // Get repository service
+        $symfonyModuleRepository = $this->get('symfonymodule.repository');
+
+        $form = $this->createForm(SymfonyModuleType::class);
+        $form->handleRequest($req);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $object->setDateAdd($form->getData()['dateAdd']);
+            $em->persist($object);
+            $em->flush();
+            return $this->redirectToRoute('symfonymodule_admin');
         }
 
-        return $this->render('@Modules/symfonyModule/templates/admin/index_symfonymodule.html.twig', [
-            'allDates' => $symfonyModuleRepository->findall(),
-            'symfonyModuleFilterForm' => $symfonyModuleForm->createView()
+        return $this->render('@Modules/symfonymoduletemplate/templates/admin/index_symfonymodule.html.twig', [
+            'dates' => $symfonyModuleRepository->findAll(),
+            'form' => $form->createView()
         ]);
     }
 }

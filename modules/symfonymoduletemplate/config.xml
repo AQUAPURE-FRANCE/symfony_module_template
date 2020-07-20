@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
-	<name>symfonymodule</name>
-
-	<displayName><![CDATA[symfonyModule]]></displayName>
-	<version><![CDATA[1.0.0]]></version>
-	<description><![CDATA[Symfony Module Template]]></description>
-
-	<author><![CDATA[development.app.tester@gmail.com]]></author>
-	<tab><![CDATA[payments_gateways]]></tab>
-	<is_configurable>1</is_configurable>
-	<need_instance>1</need_instance>
+    <name>symfonymoduletemplate</name>
+    <displayName><![CDATA[Symfony Module Template]]></displayName>
+    <version><![CDATA[1.0.0]]></version>
+    <description><![CDATA[This is a symfony template for Ps]]></description>
+    <author><![CDATA[development.app.tester@gmail.com]]></author>
+    <tab><![CDATA[administration]]></tab>
+	<confirmUninstall><![CDATA[]]></confirmUninstall>
+    <is_configurable>0</is_configurable>
+    <need_instance>0</need_instance>
+	<limited_countries></limited_countries>
 </module>

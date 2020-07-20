@@ -9,7 +9,7 @@ let config = {
     output: {
         path: path.resolve('../../admin-dev/symfonymodule-bundle'),
         filename: 'symfonymodule-bundle.js',
-        publicPath: '/../../adminLionel/symfonymodule-bundle/'
+        publicPath: '/../../admin-dev/symfonymodule-bundle/'
     },
     module: {
         rules: [

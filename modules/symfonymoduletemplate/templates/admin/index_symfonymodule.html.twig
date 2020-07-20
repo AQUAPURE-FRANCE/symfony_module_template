@@ -1,14 +1,31 @@
 {% extends '@PrestaShop/Admin/layout.html.twig' %}
 
-{% form_theme quotationFilterForm 'bootstrap_4_layout.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
  {% block content %}
 
-     <div class="quotation">
-        Hello
+     <div class="symfonymodule">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+         <button type="submit">Submit</button>
+        {{ form_end(form) }}
      </div>
+
+     <table>
+         <tr>
+             <th>#</th>
+             <th>Date</th>
+         </tr>
+         {% for date in dates %}
+             <tr>
+                 <td>{{ loop.index }}</td>
+                 <td>{{ date.date_add }}</td>
+             </tr>
+         {% endfor %}
+     </table>
+
  {% endblock %}
 
     {% block javascripts %}
-        <script type="text/javascript" src="{{ asset('quotation-bundle/quotation-bundle.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('symfonymodule-bundle/symfonymodule-bundle.js') }}"></script>
     {% endblock %}

@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Table()
  * @ORM\Entity()
+ * @ORM\Table(name="ps_sf_module_template")
  */
 class SymfonyModule
 {
@@ -15,7 +16,7 @@ class SymfonyModule
      * @var int
      *
      * @ORM\Id
-     * @ORM\Column(name="id_quotation", type="integer")
+     * @ORM\Column(name="id_sf_module", type="integer")
      * @ORM\GeneratedValue()
      */
     private $id;

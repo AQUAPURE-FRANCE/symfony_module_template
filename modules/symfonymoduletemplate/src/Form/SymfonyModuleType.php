@@ -12,11 +12,10 @@ class SymfonyModuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->setMethod('GET')
             ->add('dateAdd', DateType::class, [
                 'required' => false,
                 'widget' => 'single_text',
-                'label' => false
+                'label' => 'Enter a date'
             ])
         ;
     }

@@ -33,10 +33,9 @@ class SymfonyModuleRepository
     public function findAll()
     {
         return $this->connection->createQueryBuilder()
-            ->addSelect('symf.*')
-            ->from($this->databasePrefix . 'symfonymodule', 'symf')
+            ->addSelect('sf.*')
+            ->from($this->databasePrefix . 'sf_module_template', 'sf')
             ->execute()
             ->fetchAll();
     }
-
 }

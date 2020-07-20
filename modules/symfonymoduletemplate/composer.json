@@ -19,7 +19,7 @@
       "SymfonyModule\\": "src/"
     },
     "classmap": [
-      "symfonymodule.php"
+      "symfonymoduletemplate.php"
     ],
     "exclude-from-classmap": []
   },

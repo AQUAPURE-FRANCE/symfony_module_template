@@ -25,9 +25,10 @@
 */
 $sql = array();
 
-$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'symfonymoduletemplate` (
-    `id_symfonymoduletemplate` int(11) NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY  (`id_symfonymoduletemplate`)
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'sf_module_template` (
+    `id_sf_module` int(11) NOT NULL AUTO_INCREMENT,
+    `date_add` DATETIME NULL,
+    PRIMARY KEY  (`id_sf_module`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
 foreach ($sql as $query) {
