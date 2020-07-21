@@ -23,10 +23,10 @@ pour un client avant de passer commande d'un ou plusieurs produit·s.
 * Dans le répertoire 'symfonymoduletemplate/assets/js/app.js', mettre à jour les paths avec le bon dossier admin
 
 ## Construit avec
-* Prestashop 1.7.6.3
-* PHP 7.2
+* Prestashop 1.7.6.5
+* PHP 7.2.31
 * Symfony 3.4
-* Twig
+* Twig on admin
 
 ## Auteur
 * Yurniel LAHERA VILLA   

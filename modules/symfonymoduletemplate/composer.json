@@ -12,7 +12,8 @@
     "doctrine/orm": "*",
     "symfony/webpack-encore-bundle": "^1.7",
     "symfony/filesystem": "^5.0",
-    "dompdf/dompdf": "^0.8.5"
+    "dompdf/dompdf": "^0.8.5",
+    "symfony/swiftmailer-bundle": "^3.4"
   },
   "autoload": {
     "psr-4": {

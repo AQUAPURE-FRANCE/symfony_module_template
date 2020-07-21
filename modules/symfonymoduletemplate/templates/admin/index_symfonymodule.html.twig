@@ -1,28 +1,31 @@
 {% extends '@PrestaShop/Admin/layout.html.twig' %}
 
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% form_theme formSMTP ?? formSendMail 'bootstrap_4_layout.html.twig' %}
 
  {% block content %}
 
-     <div class="symfonymodule">
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-         <button type="submit">Submit</button>
-        {{ form_end(form) }}
+     <ul class="nav nav-tabs" id="myTab" role="tablist">
+         <li class="nav-item">
+             <a class="nav-link active" id="smtp-tab" data-toggle="tab" href="#smtp" role="tab" aria-controls="smtp" aria-selected="true">SMTP Settings</a>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link" id="send-email-tab" data-toggle="tab" href="#send-email" role="tab" aria-controls="send-email" aria-selected="false">Send Email</a>
+         </li>
+     </ul>
+     <div class="tab-content" id="myTabContent">
+         <div class="tab-pane fade show active" id="smtp" role="tabpanel" aria-labelledby="smtp-tab">
+             {{ form_start(formSMTP) }}
+             {{ form_widget(formSMTP) }}
+             <button type="submit" class="btn btn-primary d-flex mt-4">Submit</button>
+             {{ form_end(formSMTP) }}
+         </div>
+         <div class="tab-pane fade" id="send-email" role="tabpanel" aria-labelledby="send-email-tab">
+             {{ form_start(formSendMail) }}
+             {{ form_widget(formSendMail) }}
+             <button type="submit" class="btn btn-primary d-flex mt-4">Send</button>
+             {{ form_end(formSendMail) }}
+         </div>
      </div>
-
-     <table>
-         <tr>
-             <th>#</th>
-             <th>Date</th>
-         </tr>
-         {% for date in dates %}
-             <tr>
-                 <td>{{ loop.index }}</td>
-                 <td>{{ date.date_add }}</td>
-             </tr>
-         {% endfor %}
-     </table>
 
  {% endblock %}
 
