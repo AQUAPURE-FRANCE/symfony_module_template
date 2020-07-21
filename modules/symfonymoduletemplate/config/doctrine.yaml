@@ -20,5 +20,5 @@ parameters:
         is_bundle: false
         type: annotation
         dir: '%kernel.project_dir%/src/Entity'
-        prefix: 'App\Entity'
-        alias: App
+        prefix: 'SymfonyModule\Entity'
+        alias: SymfonyModule

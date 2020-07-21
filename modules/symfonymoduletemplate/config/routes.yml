@@ -2,6 +2,6 @@ symfonymodule_admin:
   path: symfonymodule/admin/index/
   methods: [GET, POST]
   defaults:
-    _controller: 'SymfonyModule\Controller\AdminSymfonyModuleController::symfonyModuleIndex'
+    _controller: 'SymfonyModule\Controller\Admin\AdminSymfonyModuleController::symfonyModuleIndex'
     _legacy_controller: 'AdminSymfonyModuleController'
     _legacy_link: 'AdminSymfonyModuleController'

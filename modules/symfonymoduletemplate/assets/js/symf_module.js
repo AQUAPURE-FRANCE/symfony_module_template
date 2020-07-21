@@ -1,26 +1,21 @@
-export const QuotationModule = {
-    getParamFromURL : (matcher) => window.location.href.match(new RegExp(matcher + '(?=\\?)', 'g')),
+export const SymfonyModule = {
+    /** Get param from URL */
+    getParamFromURL: (matcher) => window.location.href.match(new RegExp(matcher + '(?=\\?)', 'g')),
 
-    getCustomersURL: function () {
-        if (QuotationModule.getParamFromURL('add') !== null && QuotationModule.getParamFromURL('add').length === 1) {
-            return document.getElementById('customers').dataset.customers.replace(/\?(?=\d)(\w|\W)+/g, '');
-        }
-    },
-
-    getProductsURL: function () {
-        if (QuotationModule.getParamFromURL('add') !== null && QuotationModule.getParamFromURL('add').length === 1) {
-            return document.getElementById('products').dataset.products.replace(/\?(?=\d)(\w|\W)+/g, '');
-        }
-    },
-
-    getData: function (url, callback, path = null, method = null, dataFetch = false, autocomplete = []) {
-        let Mth = method !== null ? method.toUpperCase() : 'GET';
-        fetch(url, {method: Mth}).then(response => response.json()).then(data => {
+    /** CRUD. Docs for Request on https://github.github.io/fetch/#options */
+    fetchData(callback, request = {}, path = null, dataFetch = false, autocomplete = []) {
+        fetch(request).then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                let error = new Error('Something went wrong on api server!');
+                error.response = response;
+                throw error;
+            }
+        }).then(data => {
             if (typeof callback === 'function') {
                 if (autocomplete.length >= 1) {
-                    // autocomplete[0] => correspond au paramètre 'selector' de la fonction 'autocomplete' type=string
                     if (typeof autocomplete[0] === 'string') {
-                        // autocomplete[1] => correspond au paramètre 'name' de la fonction 'autocomplete' type=string
                         if (typeof autocomplete[1] === 'string') {
                             if (typeof autocomplete[2] === 'number') {
                                 callback(autocomplete[0], autocomplete[1], autocomplete[2], data);
@@ -44,14 +39,11 @@ export const QuotationModule = {
         }).catch(error => console.log(error));
     },
 
-    substringMatcher: function (strs) {
+    substringMatcher(strings) {
         return function findMatches(q, cb) {
-            let matches, substringRegex;
-            // Tableau qui récupère les occurences lors de la recherche
-            matches = [];
-            // Expression régulière utilisée pour déterminer si une chaîne contient la sous-chaîne `q`
+            let matches = [];
             let substrRegex = new RegExp(q, 'i');
-            $.each(strs, function (i, str) {
+            $.each(strings, function (i, str) {
                 if (substrRegex.test(str)) {
                     matches.push(str);
                 }
@@ -60,7 +52,8 @@ export const QuotationModule = {
         }
     },
 
-    autocomplete: function (selector, name, minLength = 2, dataFetch) {
+    /** Autocomplete with twitter typeahead on https://twitter.github.io/typeahead.js/examples/ */
+    autocomplete(selector, name, dataFetch, minLength = 2) {
         $(selector).typeahead({
                 hint: true,
                 highlight: true,
@@ -68,7 +61,7 @@ export const QuotationModule = {
             },
             {
                 name: name,
-                source: QuotationModule.substringMatcher(dataFetch)
+                source: this.substringMatcher(dataFetch)
             })
     },
 };
