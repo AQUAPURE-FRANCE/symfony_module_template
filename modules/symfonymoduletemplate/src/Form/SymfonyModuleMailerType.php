@@ -20,16 +20,20 @@ class SymfonyModuleMailerType extends AbstractType
             ->add('mailer_to', EmailType::class, [
                 'label' => 'Enter mail receiver',
                 'mapped' => true,
+                'required' => true,
             ])
-            ->add('mailer_from', HiddenType::class, [
+            ->add('mailer_from', EmailType::class, [
                 'mapped' => true,
-                'data' => Configuration::get('SF_TEMPLATE_EMAIL_FROM' ?? '')
+                'data' => Configuration::get('SF_TEMPLATE_EMAIL_FROM' ?? ''),
+                'required' => false
             ])
             ->add('mailer_subject', TextType::class, [
-                'label' => 'Enter Email subject'
+                'label' => 'Enter Email subject',
+                'required' => true,
             ])
             ->add('mailer_message', TextareaType::class, [
-                'label' => 'Enter message here'
+                'label' => 'Enter message here',
+                'required' => true,
             ])
         ;
     }
