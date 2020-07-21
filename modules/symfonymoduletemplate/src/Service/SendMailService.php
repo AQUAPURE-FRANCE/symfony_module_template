@@ -6,10 +6,6 @@ use Configuration;
 use Swift_Mailer;
 use Swift_Message;
 use Swift_SmtpTransport;
-use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 
 class SendMailService
 {
@@ -19,7 +15,6 @@ class SendMailService
         $this->smtp_username = Configuration::get('SF_TEMPLATE_SMTP_USERNAME');
         $this->smtp_password = Configuration::get('SF_TEMPLATE_SMTP_PASSWORD');
         $this->smtp_email_from = Configuration::get('SF_TEMPLATE_EMAIL_FROM');
-        $this->twig = new Environment();
     }
 
     /**
