@@ -1,4 +1,4 @@
-# Quotation module
+# Symfony Module Template
 
 Quotation est un module Prestashop permettant de générer des devis au format PDF 
 pour un client avant de passer commande d'un ou plusieurs produit·s.
