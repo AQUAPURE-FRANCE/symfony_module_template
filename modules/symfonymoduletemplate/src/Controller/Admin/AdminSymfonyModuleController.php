@@ -20,7 +20,7 @@ class AdminSymfonyModuleController extends FrameworkBundleAdminController
      * @param Request $req
      * @return RedirectResponse|Response|null
      */
-    public function symfonyModuleIndex(Request $req)
+    public function index(Request $req)
     {
         /** @var EntityManagerInterface $em */
         $em = $this->getDoctrine()->getManager();
@@ -58,7 +58,7 @@ class AdminSymfonyModuleController extends FrameworkBundleAdminController
             );
             $this->addFlash('succes', 'Mail sent to ' . $formSendMail->getData()['mailer_to']);
 
-            return $this->redirectToRoute('symfonymodule_admin');
+            return $this->redirectToRoute('admin_index');
         }
 
         return $this->render('@Modules/symfonymoduletemplate/templates/admin/index_symfonymodule.html.twig', [
