@@ -1,8 +1,8 @@
 <?php
 
-
 use Doctrine\ORM\EntityManagerInterface;
-use Twig\Environment;
+use SymfonyModule\Entity\SymfonyModule;
+use SymfonyModule\Repository\SymfonyModuleRepository;
 
 /**
  * Visit module on 'module/symfonymoduletemplate/shop'
@@ -14,25 +14,11 @@ use Twig\Environment;
 class SymfonyModuleTemplateShopModuleFrontController extends ModuleFrontController
 {
     /**
-     * @var EntityManagerInterface $manager
-     */
-    private $manager;
-
-    /**
-     * @var Environment $twig
-     */
-    private $twig;
-
-    /**
-     * @see ModuleFrontController::__construct()
+     * @see ModuleFrontControllerCore::__construct()
      */
     public function __construct()
     {
         parent::__construct();
-
-        $this->kernel = SymfonyModuleTemplate::getKernel();
-        $this->manager = $this->kernel->getContainer()->get('doctrine');
-        $this->twig = SymfonyModuleTemplate::getService('twig');
     }
 
     /**
@@ -48,15 +34,15 @@ class SymfonyModuleTemplateShopModuleFrontController extends ModuleFrontControll
      */
     public function initContent()
     {
-        //parent::initContent();
+        parent::initContent();
 
+        /** @var EntityManagerInterface $em */
+        $em = $this->context->controller->getContainer()->get('doctrine.orm.entity_manager');
 
-        $var = $this->twig->load('@Modules/symfonymoduletemplate/templates/shop.html.twig', [
-            'test' => 'it works!'
-        ]);
+        /** @var SymfonyModuleRepository $repository */
+        $repository = $this->get('symfonymodule_repository'); // Or: $em->getRepository(SymfonyModule::class)
 
-        return dump($var);
-//        $this->context->smarty->assign('test', dump($this->context));
-//        $this->setTemplate('module:symfonymoduletemplate/templates/shop.tpl');
+        $this->context->smarty->assign('var', dump($repository->findAllCustomers()));
+        $this->setTemplate('module:symfonymoduletemplate/views/templates/shop.tpl');
     }
 }
