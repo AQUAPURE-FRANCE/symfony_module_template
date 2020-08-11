@@ -3,6 +3,7 @@
 namespace SymfonyModule\Controller\Admin;
 
 use Configuration;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -27,8 +28,8 @@ class AdminSymfonyModuleController extends FrameworkBundleAdminController
 
         $object = new SymfonyModule();
 
-        /** @var SymfonyModuleRepository $symfonyModuleRepository */
-        $sfModuleRepository = $em->getRepository(SymfonyModule::class); // Or: $this->get('symfonymodule.repository');
+        /** @var SymfonyModuleRepository $sfModuleRepository */
+        $sfModuleRepository = $this->get('symfonymodule_repository'); // Or: $sfModuleRepository = $em->getRepository(SymfonyModule::class);
 
         $formSMTP = $this->createform(SymfonyModuleSMTPType::class);
         $formSMTP->handleRequest($req);
@@ -51,7 +52,7 @@ class AdminSymfonyModuleController extends FrameworkBundleAdminController
                 $formSendMail->getData()['mailer_subject'],
                 $formSendMail->getData()['mailer_to'],
                 $this->renderView(
-                    '@Modules/symfonymoduletemplate/templates/admin/mail_template.html.twig',
+                    '@Modules/symfonymoduletemplate/views/templates/admin/mail_template.html.twig',
                     ['test' => $formSendMail->getData()['mailer_message']]
                 ),
                 null
@@ -61,9 +62,19 @@ class AdminSymfonyModuleController extends FrameworkBundleAdminController
             return $this->redirectToRoute('admin_index');
         }
 
-        return $this->render('@Modules/symfonymoduletemplate/templates/admin/index_symfonymodule.html.twig', [
+        return $this->render('@Modules/symfonymoduletemplate/views/templates/admin/index_symfonymodule.html.twig', [
             'formSMTP' => $formSMTP->createView(),
             'formSendMail' => $formSendMail->createView()
         ]);
+    }
+
+    public function add(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $newDate = (new SymfonyModule())->setDateAdd(new DateTime($request->request->get('mydate')));
+        $em->persist($newDate);
+        $em->flush();
+
+        return $this->json($newDate, 200, [], []);
     }
 }
