@@ -1,0 +1,22 @@
+services:
+  _defaults:
+    public: true
+
+  chatbot_controller:
+    class: Chatbot\Controller\Admin\AdminChatbotController
+    arguments:
+      - '@doctrine.dbal.default_connection'
+      - 'doctrine.cache.provider'
+      - 'doctrine.orm.entity_manager'
+
+  chatbot_entity:
+    class: Chatbot\Entity\Chatbot
+    arguments:
+      - '@doctrine.dbal.default_connection'
+      - '%database_prefix%'
+
+  chatbot_repository:
+    class: Chatbot\Repository\ChatbotRepository
+    arguments:
+      - '@doctrine.dbal.default_connection'
+      - '%database_prefix%'

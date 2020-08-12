@@ -1,0 +1,7 @@
+chatbot_admin_index:
+  path: chatbot/admin/index/
+  methods: [GET, POST]
+  defaults:
+    _controller: 'Chatbot\Controller\Admin\AdminChatbotController::index'
+    _legacy_controller: 'AdminChatbotController'
+    _legacy_link: 'AdminChatbotController'

@@ -1,0 +1,11 @@
+/*
+
+!/themes
+/themes/*
+!/themes/dekora
+
+!/modules
+/modules/*
+!/modules/chatbot
+
+!.gitignore

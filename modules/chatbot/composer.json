@@ -1,0 +1,35 @@
+{
+  "name": "chatbot",
+  "description": "A super nice Chatbot!",
+  "authors": [
+    {
+      "name": "Monya RAZOKI",
+      "email": "monyamyarazoki@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "doctrine/orm": "*",
+    "symfony/webpack-encore-bundle": "^1.7",
+    "symfony/filesystem": "^5.0",
+    "dompdf/dompdf": "^0.8.5",
+    "symfony/swiftmailer-bundle": "^3.4",
+    "symfony/twig-bundle": "^5.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Chatbot\\": "src/",
+      "Chatbot\\Override\\": "override/"
+    },
+    "classmap": [
+      "chatbot.php"
+    ],
+    "exclude-from-classmap": []
+  },
+  "config": {
+    "preferred-install": "dist",
+    "prepend-autoloader": false
+  },
+  "type": "prestashop-module",
+  "license": "<???>"
+}
