@@ -19,31 +19,31 @@ class SymfonyModuleSMTPType extends AbstractType
                 'label' => 'Enter SMTP Host',
                 'mapped' => true,
                 'required' => true,
-                'data' => Configuration::get('SF_TEMPLATE_SMTP_HOST' ?? '')
+                'data' => Configuration::get('SF_TEMPLATE_SMTP_HOST') ?? ''
             ])
             ->add('smtp_port', IntegerType::class, [
                 'label' => 'Enter SMTP Port',
                 'mapped' => true,
                 'required' => true,
-                'data' => Configuration::get('SF_TEMPLATE_SMTP_PORT' ?? '')
+                'data' => (int) Configuration::get('SF_TEMPLATE_SMTP_PORT') ?? 0
             ])
             ->add('smtp_username', TextType::class, [
                 'label' => 'Enter username',
                 'mapped' => true,
                 'required' => true,
-                'data' => Configuration::get('SF_TEMPLATE_SMTP_USERNAME' ?? '')
+                'data' => Configuration::get('SF_TEMPLATE_SMTP_USERNAME') ?? ''
             ])
             ->add('smtp_password', TextType::class, [
                 'label' => 'Enter password',
                 'mapped' => true,
                 'required' => true,
-                'data' => Configuration::get('SF_TEMPLATE_SMTP_PASSWORD' ?? '')
+                'data' => Configuration::get('SF_TEMPLATE_SMTP_PASSWORD') ?? ''
             ])
             ->add('smtp_from', EmailType::class, [
                 'label' => 'Enter email',
                 'mapped' => true,
                 'required' => true,
-                'data' => Configuration::get('SF_TEMPLATE_EMAIL_FROM' ?? '')
+                'data' => Configuration::get('SF_TEMPLATE_EMAIL_FROM') ?? ''
             ])
         ;
     }
