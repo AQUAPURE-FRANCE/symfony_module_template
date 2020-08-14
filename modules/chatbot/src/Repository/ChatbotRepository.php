@@ -42,9 +42,10 @@ class ChatbotRepository
     public function findSomething()
     {
         return $this->connection->createQueryBuilder()
-            ->addSelect('ch.*')
+            ->addSelect('ch.*', 'g.*')
             ->from($this->databasePrefix . 'chat', 'ch')
-            ->join('ch', $this->databasePrefix . 'chat_message', 'm', 'ch.id_chat_message = m.id_chat_message')
-            ->execute()->fetch();
+            ->join('ch', $this->databasePrefix . 'chat_user', 'cu', 'ch.id_chat_user = cu.id_chat_user')
+            ->join('cu', $this->databasePrefix . 'guest', 'g', 'cu.id_guest = g.id_guest')
+            ->execute()->fetchAll();
     }
 }
