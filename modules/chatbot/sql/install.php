@@ -25,10 +25,74 @@
 */
 $sql = array();
 
-$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chatbot` (
-    `id_chatbot` int(11) NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY  (`id_chatbot`)
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat` (
+    `id_chat` int(11) NOT NULL AUTO_INCREMENT,
+    `id_chat_user` int(11) NOT NULL,
+    `id_chat_employee` int(11) NOT NULL,
+    `id_chat_message` int(11) NOT NULL,
+    `is_user_sender` boolean NOT NULL,
+    `has_response` boolean NOT NULL DEFAULT false,
+    `created_at` datetime NOT NULL,
+    PRIMARY KEY  (`id_chat`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
+
+
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_message` (
+    `id_chat_message` int(11) NOT NULL AUTO_INCREMENT,
+    `text` text NOT NULL,
+    `id_chat_subject` int(11) NOT NULL,
+    PRIMARY KEY  (`id_chat_message`)
+) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
+
+
+
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_subject` (
+    `id_chat_subject` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(225) NOT NULL,
+    PRIMARY KEY  (`id_chat_subject`)
+) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
+
+
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_employee` (
+    `id_chat_employee` int(11) NOT NULL AUTO_INCREMENT,
+    `id_employee` int(11) NOT NULL,
+    `id_chat_avatar` int(11) NOT NULL,
+    PRIMARY KEY  (`id_chat_employee`)
+) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
+
+
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_avatar` (
+    `id_chat_avatar` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(225) NOT NULL,
+    `is_default` boolean NOT NULL DEFAULT true,
+    PRIMARY KEY  (`id_chat_avatar`)
+) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
+
+
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_user` (
+    `id_chat_user` int(11) NOT NULL AUTO_INCREMENT,
+    `id_guest` int(11) NOT NULL,
+    `id_customer` int(11) NOT NULL,
+    `id_chat_avatar` int(11) NOT NULL,
+    `firstname` varchar(225),
+    `lastname` varchar(225),
+    `email` varchar(225),
+    PRIMARY KEY  (`id_chat_user`)
+) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
+
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_to_faq` (
+    `id_chat_to_faq` int(11) NOT NULL AUTO_INCREMENT,
+    `id_chat` int(11) NOT NULL,
+    `is_relevant` boolean NOT NULL DEFAULT false,
+    PRIMARY KEY  (`id_chat_to_faq`)
+) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
+
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_blacklist` (
+    `id_chat_blacklist` int(11) NOT NULL AUTO_INCREMENT,
+    `text` text,
+    PRIMARY KEY  (`id_chat_blacklist`)
+) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
+
 
 foreach ($sql as $query) {
     if (Db::getInstance()->execute($query) == false) {

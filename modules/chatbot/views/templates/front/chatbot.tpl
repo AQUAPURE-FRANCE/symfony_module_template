@@ -2,3 +2,6 @@
 {block name="content"}
     {$var}
 {/block}
+
+
+

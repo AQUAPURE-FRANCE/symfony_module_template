@@ -29,7 +29,7 @@ class AdminChatbotController extends FrameworkBundleAdminController
         $object = new Chatbot();
 
         /** @var ChatbotRepository $sfModuleRepository */
-        $sfModuleRepository = $this->get('chatbot_repository'); // Or: $sfModuleRepository = $em->getRepository(Chatbot::class);
+        $repository = $this->get('chatbot_repository'); // Or: $sfModuleRepository = $em->getRepository(Chatbot::class);
 
         $formSMTP = $this->createform(ChatbotSMTPType::class);
         $formSMTP->handleRequest($req);
@@ -63,7 +63,7 @@ class AdminChatbotController extends FrameworkBundleAdminController
         }
 
         return $this->render('@Modules/chatbot/views/templates/admin/configure.html.twig', [
-            'var' => dump($formSendMail->createView())
+            'var' => dump($repository->findSomething())
 //            'formSMTP' => $formSMTP->createView(),
 //            'formSendMail' => $formSendMail->createView()
         ]);

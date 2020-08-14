@@ -38,4 +38,13 @@ class ChatbotRepository
             ->execute()
             ->fetchAll();
     }
+
+    public function findSomething()
+    {
+        return $this->connection->createQueryBuilder()
+            ->addSelect('ch.*')
+            ->from($this->databasePrefix . 'chat', 'ch')
+            ->join('ch', $this->databasePrefix . 'chat_message', 'm', 'ch.id_chat_message = m.id_chat_message')
+            ->execute()->fetch();
+    }
 }
