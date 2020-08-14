@@ -23,31 +23,30 @@ class Chat
      * @ORM\Column(name="id_chat", type="integer")
      * @ORM\GeneratedValue()
      */
-    private $idChat;
+    private $id;
 
     /**
      * @var int
-     *
+     * @ORM\ManyToOne(targetEntity="Chatbot\Entity\ChatUser", inversedBy="chats")
      * @ORM\Column(name="id_chat_user", type="integer")
      */
-    private $idChatUser;
+    private $chatUser;
 
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="ChatEmployee", inversedBy="chats")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     *
+     * @ORM\ManyToOne(targetEntity="Chatbot\Entity\ChatEmployee", inversedBy="chats")
      * @ORM\Column(name="id_chat_employee", type="integer")
      */
-    private $idChatEmployee;
+    private $chatEmployee;
 
     /**
      * @var int
      *
+     * @ORM\OneToOne(targetEntity="Chatbot\Entity\ChatMessage", inversedBy="chat")
      * @ORM\Column(name="id_chat_message", type="integer")
      */
-    private $idChatMessage;
+    private $chatMessage;
 
     /**
      * @var Boolean
@@ -63,72 +62,71 @@ class Chat
      */
     private $createdAt;
 
-    /**
-     * @return int
-     */
-    public function getIdChat()
-    {
-        return $this->idChat;
-    }
-
-    /**
-     * @param int $idChat
-     */
-    public function setIdChat($idChat)
-    {
-        $this->idChat = $idChat;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdChatUser()
-    {
-        return $this->idChatUser;
-    }
-
-    /**
-     * @param int $idChatUser
-     */
-    public function setIdChatUser($idChatUser)
-    {
-        $this->idChatUser = $idChatUser;
-    }
-
-
 
 
 
     /**
      * @return int
      */
-    public function getIdChatEmployee()
+    public function getId()
     {
-        return $this->idChatEmployee;
+        return $this->id;
     }
 
     /**
-     * @param int $idChatEmployee
+     * @param int $id
      */
-    public function setIdChatEmployee($idChatEmployee)
+    public function setId($id)
     {
-        $this->idChatEmployee = $idChatEmployee;
+        $this->id = $id;
     }
 
     /**
      * @return int
      */
-    public function getIdChatMessage()
+    public function getChatUser()
     {
-        return $this->idChatMessage;
+        return $this->chatUser;
     }
 
     /**
-     * @param int $idChatMessage
+     * @param int $chatUser
      */
-    public function setIdChatMessage($idChatMessage)
+    public function setChatUser($chatUser)
     {
-        $this->idChatMessage = $idChatMessage;
+        $this->chatUser = $chatUser;
+    }
+
+    /**
+     * @return int
+     */
+    public function getChatEmployee()
+    {
+        return $this->chatEmployee;
+    }
+
+    /**
+     * @param int $chatEmployee
+     */
+    public function setChatEmployee($chatEmployee)
+    {
+        $this->chatEmployee = $chatEmployee;
+    }
+
+    /**
+     * @return int
+     */
+    public function getChatMessage()
+    {
+        return $this->chatMessage;
+    }
+
+    /**
+     * @param int $chatMessage
+     */
+    public function setChatMessage($chatMessage)
+    {
+        $this->chatMessage = $chatMessage;
     }
 
     /**
@@ -162,6 +160,5 @@ class Chat
     {
         $this->createdAt = $createdAt;
     }
-
 
 }

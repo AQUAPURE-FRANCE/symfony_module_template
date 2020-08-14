@@ -22,7 +22,7 @@ class ChatSubject
      * @ORM\Column(name="id_chat_subject", type="integer")
      * @ORM\GeneratedValue()
      */
-    private $idChatSubject;
+    private $id;
 
     /**
      * @var string
@@ -37,17 +37,17 @@ class ChatSubject
     /**
      * @return int
      */
-    public function getIdChatSubject()
+    public function getId()
     {
-        return $this->idChatSubject;
+        return $this->id;
     }
 
     /**
-     * @param int $idChatSubject
+     * @param int $id
      */
-    public function setIdChatSubject($idChatSubject)
+    public function setIdChatSubject($id)
     {
-        $this->idChatSubject = $idChatSubject;
+        $this->id = $id;
     }
 
     /**

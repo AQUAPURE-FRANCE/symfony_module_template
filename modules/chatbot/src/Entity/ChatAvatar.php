@@ -22,7 +22,7 @@ class ChatAvatar
      * @ORM\Column(name="id_chat_avatar", type="integer")
      * @ORM\GeneratedValue()
      */
-    private $idChatAvatar;
+    private $id;
 
     /**
      * @var string
@@ -37,5 +37,53 @@ class ChatAvatar
      * @ORM\Column(name="is_default", type="boolean")
      */
     private $isDefault;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDefault()
+    {
+        return $this->isDefault;
+    }
+
+    /**
+     * @param bool $isDefault
+     */
+    public function setIsDefault($isDefault)
+    {
+        $this->isDefault = $isDefault;
+    }
 
 }

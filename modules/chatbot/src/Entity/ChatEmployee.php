@@ -20,7 +20,7 @@ class ChatEmployee
      * @ORM\Column(name="id_chat_employee", type="integer")
      * @ORM\GeneratedValue()
      */
-    private $idChatEmployee;
+    private $id;
 
     /**
      * @var string
@@ -29,30 +29,25 @@ class ChatEmployee
      */
     private $name;
 
-
     /**
-     * @ORM\OneToMany(targetEntity="Chat", mappedBy="idChatMessage")
+     * @ORM\OneToMany(targetEntity="Chatbot\Entity\Chat", mappedBy="idChatEmployee")
      */
     private $chats;
-
-
-
-
 
     /**
      * @return int
      */
-    public function getIdChatEmployee()
+    public function getId()
     {
-        return $this->idChatEmployee;
+        return $this->id;
     }
 
     /**
-     * @param int $idChatEmployee
+     * @param int $id
      */
-    public function setIdChatEmployee($idChatEmployee)
+    public function setId($id)
     {
-        $this->idChatEmployee = $idChatEmployee;
+        $this->id = $id;
     }
 
     /**
@@ -69,6 +64,22 @@ class ChatEmployee
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChats()
+    {
+        return $this->chats;
+    }
+
+    /**
+     * @param mixed $chats
+     */
+    public function setChats($chats)
+    {
+        $this->chats = $chats;
     }
 
 }

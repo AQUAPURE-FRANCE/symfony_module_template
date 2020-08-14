@@ -22,14 +22,14 @@ class ChatMessage
      * @ORM\Column(name="id_chat_message", type="integer")
      * @ORM\GeneratedValue()
      */
-    private $idChatMessage;
+    private $id;
 
     /**
      * @var int
      *
      * @ORM\Column(name="id_chat_subject", type="integer")
      */
-    private $idChatSubject;
+    private $chatSubject;
 
 
     /**
@@ -39,39 +39,36 @@ class ChatMessage
      */
     private $text;
 
-
-
-
     /**
      * @return int
      */
-    public function getIdChatMessage()
+    public function getId()
     {
-        return $this->idChatMessage;
+        return $this->id;
     }
 
     /**
-     * @param int $idChatMessage
+     * @param int $id
      */
-    public function setIdChatMessage($idChatMessage)
+    public function setId($id)
     {
-        $this->idChatMessage = $idChatMessage;
+        $this->id = $id;
     }
 
     /**
      * @return int
      */
-    public function getIdChatSubject()
+    public function getChatSubject()
     {
-        return $this->idChatSubject;
+        return $this->chatSubject;
     }
 
     /**
-     * @param int $idChatSubject
+     * @param int $chatSubject
      */
-    public function setIdChatSubject($idChatSubject)
+    public function setChatSubject($chatSubject)
     {
-        $this->idChatSubject = $idChatSubject;
+        $this->chatSubject = $chatSubject;
     }
 
     /**
@@ -89,6 +86,8 @@ class ChatMessage
     {
         $this->text = $text;
     }
+
+
 
 
 }

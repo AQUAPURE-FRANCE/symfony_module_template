@@ -20,28 +20,28 @@ class ChatUser
      * @ORM\Column(name="id_chat_employee", type="integer")
      * @ORM\GeneratedValue()
      */
-    private $idChatUser;
+    private $id;
 
     /**
      * @var int
      *
      * @ORM\Column(name="id_guest", type="integer")
      */
-    private $id_guest;
+    private $guest;
 
     /**
      * @var int
      *
      * @ORM\Column(name="id_customer", type="integer")
      */
-    private $id_customer;
+    private $customer;
 
     /**
      * @var int
      *
      * @ORM\Column(name="id_avatar", type="integer")
      */
-    private $id_avatar;
+    private $avatar;
 
     /**
      * @var string
@@ -67,69 +67,7 @@ class ChatUser
 
 
 
-    /**
-     * @return int
-     */
-    public function getIdChatUser()
-    {
-        return $this->idChatUser;
-    }
 
-    /**
-     * @param int $idChatUser
-     */
-    public function setIdChatUser($idChatUser)
-    {
-        $this->idChatUser = $idChatUser;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdGuest()
-    {
-        return $this->id_guest;
-    }
-
-    /**
-     * @param int $id_guest
-     */
-    public function setIdGuest($id_guest)
-    {
-        $this->id_guest = $id_guest;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdCustomer()
-    {
-        return $this->id_customer;
-    }
-
-    /**
-     * @param int $id_customer
-     */
-    public function setIdCustomer($id_customer)
-    {
-        $this->id_customer = $id_customer;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdAvatar()
-    {
-        return $this->id_avatar;
-    }
-
-    /**
-     * @param int $id_avatar
-     */
-    public function setIdAvatar($id_avatar)
-    {
-        $this->id_avatar = $id_avatar;
-    }
 
     /**
      * @return string
@@ -179,6 +117,69 @@ class ChatUser
         $this->email = $email;
     }
 
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGuest()
+    {
+        return $this->guest;
+    }
+
+    /**
+     * @param int $guest
+     */
+    public function setGuest($guest)
+    {
+        $this->guest = $guest;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param int $customer
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param int $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
 
 
 }

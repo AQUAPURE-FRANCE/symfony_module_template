@@ -28,6 +28,9 @@ class Chatbot
      */
     private $dateAdd;
 
+
+
+
     /**
      * @return int
      */

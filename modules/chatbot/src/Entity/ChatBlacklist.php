@@ -32,6 +32,11 @@ class ChatBlacklist
      */
     private $text;
 
+
+
+
+
+
     /**
      * @return int
      */
@@ -63,9 +68,6 @@ class ChatBlacklist
     {
         $this->text = $text;
     }
-
-
-
 
 
 }
