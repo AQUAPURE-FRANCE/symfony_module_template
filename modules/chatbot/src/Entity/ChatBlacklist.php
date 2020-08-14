@@ -22,7 +22,7 @@ class ChatBlacklist
      * @ORM\Column(name="id_blacklist", type="integer")
      * @ORM\GeneratedValue()
      */
-    private $idBlacklist;
+    private $id;
 
 
     /**
@@ -40,17 +40,17 @@ class ChatBlacklist
     /**
      * @return int
      */
-    public function getIdBlacklist()
+    public function getId()
     {
-        return $this->idBlacklist;
+        return $this->id;
     }
 
     /**
-     * @param int $idBlacklist
+     * @param int $id
      */
-    public function setIdBlacklist($idBlacklist)
+    public function setIdBlacklist($id)
     {
-        $this->idBlacklist = $idBlacklist;
+        $this->id = $id;
     }
 
     /**
