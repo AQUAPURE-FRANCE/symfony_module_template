@@ -45,27 +45,9 @@ INSERT INTO `ps_chat` (
   `is_user_sender`,
   `has_response`,
   `created_at`
-) VALUES (1, 1, 1, 1, 1, 1, '2020-08-14 10:13:36');
-
-INSERT INTO `ps_chat` (
-  `id_chat`,
-  `id_chat_user`,
-  `id_chat_employee`,
-  `id_chat_message`,
-  `is_user_sender`,
-  `has_response`,
-  `created_at`
-) VALUES (2, 2, 1, 2, 1, 1, '2020-08-14 10:33:36');
-
-INSERT INTO `ps_chat` (
-  `id_chat`,
-  `id_chat_user`,
-  `id_chat_employee`,
-  `id_chat_message`,
-  `is_user_sender`,
-  `has_response`,
-  `created_at`
-) VALUES (3, 3, 1, 3, 1, 1, '2020-08-14 11:33:36');
+) VALUES (1, 1, 1, 1, 1, 1, '2020-08-14 10:13:36'),
+(2, 2, 1, 2, 1, 1, '2020-08-14 10:33:36'),
+(3, 3, 1, 3, 1, 1, '2020-08-14 11:33:36');
 
 -- --------------------------------------------------------
 
@@ -139,19 +121,9 @@ INSERT INTO `ps_chat_message` (
   `id_chat_message`,
   `text`,
   `id_chat_subject`
-) VALUES (1, 'corps du message', 1);
-
-INSERT INTO `ps_chat_message` (
-  `id_chat_message`,
-  `text`,
-  `id_chat_subject`
-) VALUES (2, 'corps du message 2', 2);
-
-INSERT INTO `ps_chat_message` (
-  `id_chat_message`,
-  `text`,
-  `id_chat_subject`
-) VALUES (3, 'corps du message 3', 3);
+) VALUES (1, 'corps du message', 1),
+(2, 'corps du message 2', 2),
+(3, 'corps du message 3', 3);
 
 -- --------------------------------------------------------
 
@@ -168,18 +140,9 @@ CREATE TABLE `ps_chat_subject` (
 INSERT INTO `ps_chat_subject` (
   `id_chat_subject`,
   `name`
-) values (1, 'sujet 1');
-
-
-INSERT INTO `ps_chat_subject` (
-  `id_chat_subject`,
-  `name`
-) values (2, 'sujet 2');
-
-INSERT INTO `ps_chat_subject` (
-  `id_chat_subject`,
-  `name`
-) values (3, 'sujet 3');
+) VALUES (1, 'sujet 1'),
+    (2, 'sujet 2'),
+    (3, 'sujet 3');
 
 -- --------------------------------------------------------
 
@@ -194,23 +157,13 @@ CREATE TABLE `ps_chat_to_faq` (
   `is_relevant` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `ps_chat_to_faq` (
+INSERT INTO `ps_chat_to_faq` (
   `id_chat_to_faq`,
   `id_chat`,
   `is_relevant`
-) VALUES (1, 1, 0);
-
-CREATE TABLE `ps_chat_to_faq` (
-  `id_chat_to_faq`,
-  `id_chat`,
-  `is_relevant`
-) VALUES (1, 2, 0);
-
-CREATE TABLE `ps_chat_to_faq` (
-  `id_chat_to_faq`,
-  `id_chat`,
-  `is_relevant`
-) VALUES (1, 3, 0);
+) VALUES (1, 1, 0),
+(2, 2, 0),
+(3, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -238,27 +191,10 @@ INSERT INTO `ps_chat_user` (
   `firstname`,
   `lastname`,
   `email`
-) VALUES (1, 1, 0, 1, '', '', '');
-
-INSERT INTO `ps_chat_user` (
-  `id_chat_user`,
-  `id_guest`,
-  `id_customer`,
-  `id_chat_avatar`,
-  `firstname`,
-  `lastname`,
-  `email`
-) VALUES (2, 2, 0, 1, '', '', '');
-
-INSERT INTO `ps_chat_user` (
-  `id_chat_user`,
-  `id_guest`,
-  `id_customer`,
-  `id_chat_avatar`,
-  `firstname`,
-  `lastname`,
-  `email`
-) VALUES (3, 3, 0, 1, '', '', '');
+) VALUES (1, 1, 0, 1, '', '', ''),
+(2, 2, 0, 1, '', '', ''),
+(3, 3, 0, 1, '', '', ''),
+(4, 3, 1, 1, '', '', '');
 
 -- --------------------------------------------------------
 
