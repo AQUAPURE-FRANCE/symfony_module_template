@@ -1,18 +1,15 @@
 <?php
-
-
 namespace Chatbot\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Table()
  * @ORM\Entity()
  * @ORM\Table(name="ps_chat_to_faq")
  */
-
 class ChatToFaq
 {
-
     /**
      * @var int
      *
@@ -21,11 +18,11 @@ class ChatToFaq
      * @ORM\GeneratedValue()
      */
     private $id;
-
     /**
      * @var int
      *
      * @ORM\Column(name="id_chat", type="integer")
+     * @ORM\OneToOne(targetEntity="Chatbot\Entity\Chat", mappedBy="chatToFaq")
      */
     private $chat;
 
@@ -43,7 +40,6 @@ class ChatToFaq
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      */
@@ -51,7 +47,6 @@ class ChatToFaq
     {
         $this->id = $id;
     }
-
     /**
      * @return int
      */
@@ -59,7 +54,6 @@ class ChatToFaq
     {
         return $this->chat;
     }
-
     /**
      * @param int $chat
      */
@@ -67,7 +61,6 @@ class ChatToFaq
     {
         $this->chat = $chat;
     }
-
     /**
      * @return bool
      */
@@ -75,7 +68,6 @@ class ChatToFaq
     {
         return $this->isRelevant;
     }
-
     /**
      * @param bool $isRelevant
      */

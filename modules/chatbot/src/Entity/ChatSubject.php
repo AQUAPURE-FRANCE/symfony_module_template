@@ -1,20 +1,13 @@
 <?php
-
-
 namespace Chatbot\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
-
 /**
  * @ORM\Table()
  * @ORM\Entity()
  * @ORM\Table(name="ps_chat_subject")
  */
-
 class ChatSubject
 {
-
     /**
      * @var int
      *
@@ -31,8 +24,10 @@ class ChatSubject
      */
     private $name;
 
-
-
+    /**
+     * @ORM\OneToMany(targetEntity="Chatbot\Entity\ChatMessage", mappedBy="chatMessage")
+     */
+    private $subjects;
 
     /**
      * @return int
@@ -41,7 +36,6 @@ class ChatSubject
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      */
@@ -49,7 +43,6 @@ class ChatSubject
     {
         $this->id = $id;
     }
-
     /**
      * @return string
      */
@@ -57,7 +50,6 @@ class ChatSubject
     {
         return $this->name;
     }
-
     /**
      * @param string $name
      */
@@ -65,5 +57,4 @@ class ChatSubject
     {
         $this->name = $name;
     }
-
 }

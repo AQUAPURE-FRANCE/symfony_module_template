@@ -1,20 +1,13 @@
 <?php
-
-
 namespace Chatbot\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
-
 /**
  * @ORM\Table()
  * @ORM\Entity()
  * @ORM\Table(name="ps_blacklist")
  */
-
 class ChatBlacklist
 {
-
     /**
      * @var int
      *
@@ -23,20 +16,12 @@ class ChatBlacklist
      * @ORM\GeneratedValue()
      */
     private $id;
-
-
     /**
      * @var $text
      *
      * @ORM\Column(name="text", type="text")
      */
     private $text;
-
-
-
-
-
-
     /**
      * @return int
      */
@@ -44,7 +29,6 @@ class ChatBlacklist
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      */
@@ -52,7 +36,6 @@ class ChatBlacklist
     {
         $this->id = $id;
     }
-
     /**
      * @return mixed
      */
@@ -60,7 +43,6 @@ class ChatBlacklist
     {
         return $this->text;
     }
-
     /**
      * @param mixed $text
      */
@@ -68,6 +50,4 @@ class ChatBlacklist
     {
         $this->text = $text;
     }
-
-
 }

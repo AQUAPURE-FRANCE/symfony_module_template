@@ -1,20 +1,15 @@
 <?php
-
-
 namespace Chatbot\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
-
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
 /**
  * @ORM\Table()
  * @ORM\Entity()
  * @ORM\Table(name="ps_chat_message")
  */
-
 class ChatMessage
 {
-
     /**
      * @var int
      *
@@ -23,21 +18,41 @@ class ChatMessage
      * @ORM\GeneratedValue()
      */
     private $id;
-
     /**
      * @var int
      *
      * @ORM\Column(name="id_chat_subject", type="integer")
+     * @ORM\ManyToOne(targetEntity="Chatbot\Entity\ChatSubject", inversedBy="subjects")
+     * @JoinColumn(name="id_chat_subject", referencedColumnName="id_chat_subject")
      */
     private $chatSubject;
-
-
+    /**
+     * @ORM\OneToMany(targetEntity="Chatbot\Entity\Chat", mappedBy="chatMessage")
+     */
+    private $chats;
+    /**
+     * @return mixed
+     */
+    public function getChats()
+    {
+        return $this->chats;
+    }
+    /**
+     * @param mixed $chats
+     */
+    public function setChats($chats)
+    {
+        $this->chats = $chats;
+    }
     /**
      * @var $text
      *
      * @ORM\Column(name="text", type="text")
      */
     private $text;
+
+
+
 
     /**
      * @return int
@@ -46,7 +61,6 @@ class ChatMessage
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      */
@@ -54,7 +68,6 @@ class ChatMessage
     {
         $this->id = $id;
     }
-
     /**
      * @return int
      */
@@ -62,7 +75,6 @@ class ChatMessage
     {
         return $this->chatSubject;
     }
-
     /**
      * @param int $chatSubject
      */
@@ -70,7 +82,6 @@ class ChatMessage
     {
         $this->chatSubject = $chatSubject;
     }
-
     /**
      * @return mixed
      */
@@ -78,7 +89,6 @@ class ChatMessage
     {
         return $this->text;
     }
-
     /**
      * @param mixed $text
      */
@@ -86,8 +96,4 @@ class ChatMessage
     {
         $this->text = $text;
     }
-
-
-
-
 }

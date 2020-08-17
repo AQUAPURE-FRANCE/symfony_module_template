@@ -1,20 +1,15 @@
 <?php
-
-
 namespace Chatbot\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Table()
  * @ORM\Entity()
  * @ORM\Table(name="ps_chat_avatar")
  */
-
 class ChatAvatar
 {
-
     /**
      * @var int
      *
@@ -23,14 +18,12 @@ class ChatAvatar
      * @ORM\GeneratedValue()
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string")
      */
     private $name;
-
     /**
      * @var boolean
      *
@@ -39,13 +32,19 @@ class ChatAvatar
     private $isDefault;
 
     /**
+     * @ORM\OneToMany(targetEntity="Chatbot\Entity\ChatEmployee", mappedBy="avatar")
+     * @JoinColumn(name="id_chat_employee", referencedColumnName="id_chat_employee")
+     */
+    private $employees;
+
+
+    /**
      * @return int
      */
     public function getId()
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      */
@@ -53,7 +52,6 @@ class ChatAvatar
     {
         $this->id = $id;
     }
-
     /**
      * @return string
      */
@@ -61,7 +59,6 @@ class ChatAvatar
     {
         return $this->name;
     }
-
     /**
      * @param string $name
      */
@@ -69,7 +66,6 @@ class ChatAvatar
     {
         $this->name = $name;
     }
-
     /**
      * @return bool
      */
@@ -77,7 +73,6 @@ class ChatAvatar
     {
         return $this->isDefault;
     }
-
     /**
      * @param bool $isDefault
      */
@@ -85,5 +80,4 @@ class ChatAvatar
     {
         $this->isDefault = $isDefault;
     }
-
 }

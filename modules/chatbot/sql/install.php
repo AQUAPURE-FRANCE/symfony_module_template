@@ -27,9 +27,6 @@ $sql = array();
 
 $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat` (
     `id_chat` int(11) NOT NULL AUTO_INCREMENT,
-    `id_chat_user` int(11) NOT NULL,
-    `id_chat_employee` int(11) NULL,
-    `id_chat_message` int(11) NOT NULL,
     `is_user_sender` boolean NOT NULL,
     `has_response` boolean NOT NULL DEFAULT false,
     `created_at` datetime NOT NULL,
@@ -40,7 +37,6 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat` (
 $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_message` (
     `id_chat_message` int(11) NOT NULL AUTO_INCREMENT,
     `text` text NOT NULL,
-    `id_chat_subject` int(11) NULL,
     PRIMARY KEY  (`id_chat_message`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
@@ -55,8 +51,6 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_subject` (
 
 $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_employee` (
     `id_chat_employee` int(11) NOT NULL AUTO_INCREMENT,
-    `id_employee` int(11) NOT NULL,
-    `id_chat_avatar` int(11) NOT NULL,
     PRIMARY KEY  (`id_chat_employee`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
@@ -71,9 +65,6 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_avatar` (
 
 $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_user` (
     `id_chat_user` int(11) NOT NULL AUTO_INCREMENT,
-    `id_guest` int(11) NOT NULL DEFAULT true,
-    `id_customer` int(11) NULL,
-    `id_chat_avatar` int(11) NULL,
     `firstname` varchar(225),
     `lastname` varchar(225),
     `email` varchar(225),
@@ -82,7 +73,6 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_user` (
 
 $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_to_faq` (
     `id_chat_to_faq` int(11) NOT NULL AUTO_INCREMENT,
-    `id_chat` int(11) NOT NULL,
     `is_relevant` boolean NOT NULL DEFAULT false,
     PRIMARY KEY  (`id_chat_to_faq`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
@@ -93,6 +83,23 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'chat_blacklist` (
     PRIMARY KEY  (`id_chat_blacklist`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
+//$sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'chat`
+//    ADD  CONSTRAINT `fk_chat_employee`
+//    FOREIGN KEY (`id_chat_employee`)
+//    REFERENCES `' . _DB_PREFIX_ . 'chat_emplyee`(`id_chat_employee`)
+//    ON DELETE RESTRICT ON UPDATE RESTRICT';
+
+//$sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'chat`
+//    ADD  CONSTRAINT `fk_chat_user`
+//    FOREIGN KEY (`id_chat_user`)
+//    REFERENCES `' . _DB_PREFIX_ . 'chat_user`(`id_chat_user`)
+//    ON DELETE RESTRICT ON UPDATE RESTRICT';
+//
+//$sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'chat`
+//    ADD  CONSTRAINT `fk_chat_message`
+//    FOREIGN KEY (`id_chat_message`)
+//    REFERENCES `' . _DB_PREFIX_ . 'chat_message`(`id_chat_message`)
+//    ON DELETE RESTRICT ON UPDATE RESTRICT';
 
 foreach ($sql as $query) {
     if (Db::getInstance()->execute($query) == false) {

@@ -1,18 +1,15 @@
 <?php
-
-
 namespace Chatbot\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Table()
  * @ORM\Entity()
- * @ORM\Table(name="ps_chat_emplyee")
+ * @ORM\Table(name="ps_chat_employee")
  */
-
 class ChatEmployee
 {
-
     /**
      * @var int
      *
@@ -25,14 +22,25 @@ class ChatEmployee
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string")
+     * @ORM\Column(name="id_employee", type="integer")
      */
-    private $name;
+    private $employee;
 
     /**
-     * @ORM\OneToMany(targetEntity="Chatbot\Entity\Chat", mappedBy="idChatEmployee")
+     * @var string
+     *
+     * @ORM\Column(name="id_chat_avatar", type="integer")
+     * @ORM\ManyToOne(targetEntity="Chatbot\Entity\ChatAvatar", inversedBy="employees")
+     */
+    private $avatar;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Chatbot\Entity\Chat", mappedBy="chatEmployee")
      */
     private $chats;
+
+
+
 
     /**
      * @return int
@@ -53,17 +61,33 @@ class ChatEmployee
     /**
      * @return string
      */
-    public function getName()
+    public function getEmployee()
     {
-        return $this->name;
+        return $this->employee;
     }
 
     /**
-     * @param string $name
+     * @param string $employee
      */
-    public function setName($name)
+    public function setEmployee($employee)
     {
-        $this->name = $name;
+        $this->employee = $employee;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
     }
 
     /**
@@ -81,5 +105,7 @@ class ChatEmployee
     {
         $this->chats = $chats;
     }
+
+
 
 }

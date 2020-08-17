@@ -1,21 +1,16 @@
 <?php
-
-
 namespace Chatbot\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
 use PhpOffice\PhpSpreadsheet\Calculation\DateTime;
-
-
 /**
  * @ORM\Table()
  * @ORM\Entity()
  * @ORM\Table(name="ps_chat")
  */
-
 class Chat
 {
-
     /**
      * @var int
      *
@@ -27,24 +22,30 @@ class Chat
 
     /**
      * @var int
-     * @ORM\ManyToOne(targetEntity="Chatbot\Entity\ChatUser", inversedBy="chats")
-     * @ORM\Column(name="id_chat_user", type="integer")
+     * @ORM\ManyToOne(targetEntity="Chatbot\Entity\ChatUser")
+     * @JoinColumn(name="id_chat_user", referencedColumnName="id_chat_user")
      */
     private $chatUser;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Chatbot\Entity\ChatToFaq", inversedBy="chat")
+     * @JoinColumn(name="id_chat_to_faq", referencedColumnName="id_chat_to_faq")
+     */
+    private $chatToFaq;
 
     /**
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Chatbot\Entity\ChatEmployee", inversedBy="chats")
-     * @ORM\Column(name="id_chat_employee", type="integer")
+     * @JoinColumn(name="id_chat_employee", referencedColumnName="id_chat_employee")
      */
     private $chatEmployee;
 
     /**
      * @var int
      *
-     * @ORM\OneToOne(targetEntity="Chatbot\Entity\ChatMessage", inversedBy="chat")
-     * @ORM\Column(name="id_chat_message", type="integer")
+     * @ORM\OneToOne(targetEntity="Chatbot\Entity\ChatMessage")
+     * @JoinColumn(name="id_chat_message", referencedColumnName="id_chat_message")
      */
     private $chatMessage;
 
@@ -64,7 +65,6 @@ class Chat
 
 
 
-
     /**
      * @return int
      */
@@ -72,7 +72,6 @@ class Chat
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      */
@@ -80,7 +79,6 @@ class Chat
     {
         $this->id = $id;
     }
-
     /**
      * @return int
      */
@@ -88,7 +86,6 @@ class Chat
     {
         return $this->chatUser;
     }
-
     /**
      * @param int $chatUser
      */
@@ -96,7 +93,6 @@ class Chat
     {
         $this->chatUser = $chatUser;
     }
-
     /**
      * @return int
      */
@@ -104,7 +100,6 @@ class Chat
     {
         return $this->chatEmployee;
     }
-
     /**
      * @param int $chatEmployee
      */
@@ -113,6 +108,9 @@ class Chat
         $this->chatEmployee = $chatEmployee;
     }
 
+
+
+
     /**
      * @return int
      */
@@ -120,7 +118,6 @@ class Chat
     {
         return $this->chatMessage;
     }
-
     /**
      * @param int $chatMessage
      */
@@ -128,7 +125,6 @@ class Chat
     {
         $this->chatMessage = $chatMessage;
     }
-
     /**
      * @return bool
      */
@@ -136,7 +132,6 @@ class Chat
     {
         return $this->isUserSender;
     }
-
     /**
      * @param bool $isUserSender
      */
@@ -144,7 +139,6 @@ class Chat
     {
         $this->isUserSender = $isUserSender;
     }
-
     /**
      * @return DateTime
      */
@@ -152,7 +146,6 @@ class Chat
     {
         return $this->createdAt;
     }
-
     /**
      * @param DateTime $createdAt
      */
@@ -160,5 +153,4 @@ class Chat
     {
         $this->createdAt = $createdAt;
     }
-
 }

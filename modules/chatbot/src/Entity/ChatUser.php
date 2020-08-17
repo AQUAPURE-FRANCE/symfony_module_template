@@ -1,74 +1,82 @@
 <?php
-
-
 namespace Chatbot\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Table()
  * @ORM\Entity()
  * @ORM\Table(name="ps_chat_user")
  */
-
 class ChatUser
 {
-
     /**
      * @var int
      *
      * @ORM\Id
-     * @ORM\Column(name="id_chat_employee", type="integer")
+     * @ORM\Column(name="id_chat_user", type="integer")
      * @ORM\GeneratedValue()
      */
     private $id;
-
     /**
      * @var int
      *
      * @ORM\Column(name="id_guest", type="integer")
      */
     private $guest;
-
     /**
      * @var int
      *
      * @ORM\Column(name="id_customer", type="integer")
      */
     private $customer;
-
     /**
      * @var int
      *
      * @ORM\Column(name="id_avatar", type="integer")
+    * @JoinColumn(name="id_chat_avatar", referencedColumnName="id_chat_avatar")
+
      */
     private $avatar;
-
     /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string")
      */
     private $firstname;
-
     /**
      * @var string
      *
      * @ORM\Column(name="lastname", type="string")
      */
     private $lastname;
-
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string")
      */
     private $email;
+    /**
+     * @ORM\OneToMany(targetEntity="Chatbot\Entity\Chat", mappedBy="chatUser")
+     */
+    private $chats;
 
 
 
-
-
-
+    /**
+     * @return mixed
+     */
+    public function getChats()
+    {
+        return $this->chats;
+    }
+    /**
+     * @param mixed $chats
+     */
+    public function setChats($chats)
+    {
+        $this->chats = $chats;
+    }
     /**
      * @return string
      */
@@ -76,7 +84,6 @@ class ChatUser
     {
         return $this->firstname;
     }
-
     /**
      * @param string $firstname
      */
@@ -84,7 +91,6 @@ class ChatUser
     {
         $this->firstname = $firstname;
     }
-
     /**
      * @return string
      */
@@ -92,7 +98,6 @@ class ChatUser
     {
         return $this->lastname;
     }
-
     /**
      * @param string $lastname
      */
@@ -100,7 +105,6 @@ class ChatUser
     {
         $this->lastname = $lastname;
     }
-
     /**
      * @return string
      */
@@ -108,7 +112,6 @@ class ChatUser
     {
         return $this->email;
     }
-
     /**
      * @param string $email
      */
@@ -116,7 +119,6 @@ class ChatUser
     {
         $this->email = $email;
     }
-
     /**
      * @return int
      */
@@ -124,7 +126,6 @@ class ChatUser
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      */
@@ -132,7 +133,6 @@ class ChatUser
     {
         $this->id = $id;
     }
-
     /**
      * @return int
      */
@@ -140,7 +140,6 @@ class ChatUser
     {
         return $this->guest;
     }
-
     /**
      * @param int $guest
      */
@@ -148,7 +147,6 @@ class ChatUser
     {
         $this->guest = $guest;
     }
-
     /**
      * @return int
      */
@@ -156,7 +154,6 @@ class ChatUser
     {
         return $this->customer;
     }
-
     /**
      * @param int $customer
      */
@@ -164,7 +161,6 @@ class ChatUser
     {
         $this->customer = $customer;
     }
-
     /**
      * @return int
      */
@@ -172,7 +168,6 @@ class ChatUser
     {
         return $this->avatar;
     }
-
     /**
      * @param int $avatar
      */
@@ -180,6 +175,4 @@ class ChatUser
     {
         $this->avatar = $avatar;
     }
-
-
 }
