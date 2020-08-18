@@ -24,6 +24,8 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
+use Twig\Environment;
+
 if (!defined('_PS_VERSION_')) {
     exit;
 }
@@ -35,8 +37,11 @@ require_once _PS_ROOT_DIR_.'/app/AppKernel.php';
  */
 class SymfonyModuleTemplate extends Module
 {
-    public static $kernel = null;
-    public static $doctrine = null;
+    /** @var Environment */
+    private $twig;
+
+    /** @var AppKernel */
+    private $kernel;
 
     public function __construct()
     {
@@ -55,6 +60,10 @@ class SymfonyModuleTemplate extends Module
         $this->description = $this->l('This is a symfony template for Ps');
         $this->confirmUninstall = $this->l('');
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
+        
+        global $kernel;
+        $this->kernel = $kernel;
+        $this->twig = $kernel->getContainer()->get('twig');
     }
 
     /**
@@ -103,47 +112,5 @@ class SymfonyModuleTemplate extends Module
         }
         $tab = new Tab($tabId);
         return $tab->delete();
-    }
-
-    /**
-     * @return AppKernel|null
-     */
-    public static function getKernel()
-    {
-        // if the singleton doesn't exist
-        if(!self::$kernel){
-            // try to load it globally (for backoffice pages)
-            global $kernel;
-            if($kernel){
-                self::$kernel = $kernel;
-            }
-            // otherwise create it manually
-            else {
-                require_once _PS_ROOT_DIR_.'/app/AppKernel.php';
-                $env = _PS_MODE_DEV_ ? 'dev' : 'prod';
-                $debug = $env === 'dev' ?? false;
-                self::$kernel = new AppKernel($env, $debug);
-                self::$kernel->boot();
-            }
-        }
-        return self::$kernel;
-    }
-
-    /**
-     * @return |null
-     */
-    public static function getDoctrine(){
-        if(!self::$doctrine){
-            self::$doctrine = self::getKernel()->getContainer()->get('doctrine')->getManager();
-        }
-        return self::$doctrine;
-    }
-
-    /**
-     * @param $service
-     * @return object|null
-     */
-    public static function getService($service){
-        return self::getKernel()->getContainer()->get($service);
     }
 }
