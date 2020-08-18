@@ -37,9 +37,6 @@ require_once _PS_ROOT_DIR_.'/app/AppKernel.php';
  */
 class SymfonyModuleTemplate extends Module
 {
-    /** @var Environment */
-    private $twig;
-
     /** @var AppKernel */
     private $kernel;
 
@@ -63,7 +60,6 @@ class SymfonyModuleTemplate extends Module
         
         global $kernel;
         $this->kernel = $kernel;
-        $this->twig = $kernel->getContainer()->get('twig');
     }
 
     /**
