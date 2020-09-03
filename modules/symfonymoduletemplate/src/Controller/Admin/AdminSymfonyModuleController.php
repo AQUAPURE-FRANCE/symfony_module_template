@@ -17,6 +17,8 @@ use SymfonyModule\Service\SendMailService;
 
 class AdminSymfonyModuleController extends FrameworkBundleAdminController
 {
+    use InitializerControllerTrait;
+    
     /**
      * @param Request $req
      * @return RedirectResponse|Response|null
