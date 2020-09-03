@@ -83,7 +83,9 @@ class SymfonyModuleTemplate extends Module
 
     private function installTab()
     {
-        $tabId = (int) Tab::getIdFromClassName('AdminSymfonyModuleController');
+        $tabRepository = $this->kernel->getContainer()->get('prestashop.core.admin.tab.repository');
+        $tabId = (int) $tabRepository->findOneIdByClassName('AdminSymfonyModuleController');
+        
         if (!$tabId) {
             $tabId = null;
         }
@@ -91,7 +93,7 @@ class SymfonyModuleTemplate extends Module
         $tab = new Tab($tabId);
         $tab->active = 1;
         $tab->class_name = 'AdminSymfonyModuleController';
-        $tab->id_parent = (int) Tab::getIdFromClassName('AdminParentModulesSf');
+        $tab->id_parent = (int) $tabRepository->findOneIdByClassName('AdminParentModulesSf');
         $tab->position = Tab::getNewLastPosition($tab->id_parent);
         foreach (Language::getLanguages(false) as $lang) {
             $tab->name[(int)$lang['id_lang']] = 'Symfony Module Template';
@@ -102,7 +104,9 @@ class SymfonyModuleTemplate extends Module
 
     private function uninstallSymfonyModuleTab()
     {
-        $tabId = (int) Tab::getIdFromClassName('AdminSymfonyModuleController');
+        $tabRepository = $this->kernel->getContainer()->get('prestashop.core.admin.tab.repository');
+        $tabId = (int) (int) $tabRepository->findOneIdByClassName('AdminSymfonyModuleController');
+        
         if (!$tabId) {
             return true;
         }
