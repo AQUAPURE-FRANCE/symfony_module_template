@@ -7,9 +7,9 @@ let config = {
         app: './assets/js/app.js'
     },
     output: {
-        path: path.resolve('../../admin-dev/symfonymodule-bundle'),
+        path: path.resolve('../../js/admin-dev/symfonymodule-bundle'),
         filename: 'symfonymodule-bundle.js',
-        publicPath: '/../../admin-dev/symfonymodule-bundle/'
+        publicPath: '/../../js/symfonymodule-bundle/'
     },
     module: {
         rules: [
