@@ -20,3 +20,7 @@ services:
     arguments:
       - '@doctrine.dbal.default_connection'
       - '%database_prefix%'
+      
+  ### Manager
+  symfonymodule.manager.manager_trait:
+    class: SymfonyModule\Manager\SymfonyModuleManagerTrait
