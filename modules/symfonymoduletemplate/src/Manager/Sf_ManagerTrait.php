@@ -1,6 +1,6 @@
 <?php
 
-namespace Sf_Aq_Indexes\Manager;
+namespace SymfonyModule\Manager;
 
 trait Sf_Aq_ManagerTrait
 {
