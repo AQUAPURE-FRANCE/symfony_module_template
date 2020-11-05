@@ -3,6 +3,7 @@
 use Doctrine\ORM\EntityManagerInterface;
 use SymfonyModule\Entity\SymfonyModule;
 use SymfonyModule\Repository\SymfonyModuleRepository;
+use SymfonyModule/Manager/SymfonyModuleManagerTrait;
 
 /**
  * Visit module on 'module/symfonymoduletemplate/shop'
@@ -13,6 +14,8 @@ use SymfonyModule\Repository\SymfonyModuleRepository;
  */
 class SymfonyModuleTemplateShopModuleFrontController extends ModuleFrontController
 {
+    use SymfonyModuleManagerTrait;
+        
     /**
      * @see ModuleFrontControllerCore::__construct()
      */
@@ -37,10 +40,10 @@ class SymfonyModuleTemplateShopModuleFrontController extends ModuleFrontControll
         parent::initContent();
 
         /** @var EntityManagerInterface $em */
-        $em = $this->context->controller->getContainer()->get('doctrine.orm.entity_manager');
+        $em = $this->service('doctrine.orm.entity_manager');
 
         /** @var SymfonyModuleRepository $repository */
-        $repository = $this->get('symfonymodule_repository'); // Or: $em->getRepository(SymfonyModule::class)
+        $repository = $this->service('symfonymodule_repository'); // Or: $em->getRepository(SymfonyModule::class)
 
         $this->context->smarty->assign('var', dump($repository->findAllCustomers()));
         $this->setTemplate('module:symfonymoduletemplate/views/templates/shop.tpl');
