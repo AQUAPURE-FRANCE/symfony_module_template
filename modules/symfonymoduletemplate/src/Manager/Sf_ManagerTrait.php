@@ -2,7 +2,7 @@
 
 namespace SymfonyModule\Manager;
 
-trait Sf_Aq_ManagerTrait
+trait SymfonyModuleManagerTrait
 {
     /**
      * @param string $serviceId
