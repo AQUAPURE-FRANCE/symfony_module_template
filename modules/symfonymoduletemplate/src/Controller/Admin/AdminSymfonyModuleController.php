@@ -14,10 +14,11 @@ use SymfonyModule\Form\SymfonyModuleMailerType;
 use SymfonyModule\Form\SymfonyModuleSMTPType;
 use SymfonyModule\Repository\SymfonyModuleRepository;
 use SymfonyModule\Service\SendMailService;
+use SymfonyModule/Manager/SymfonyModuleManagerTrait;
 
 class AdminSymfonyModuleController extends FrameworkBundleAdminController
 {
-    use InitializerControllerTrait;
+    use SymfonyModuleManagerTrait;
     
     /**
      * @param Request $req
@@ -31,7 +32,7 @@ class AdminSymfonyModuleController extends FrameworkBundleAdminController
         $object = new SymfonyModule();
 
         /** @var SymfonyModuleRepository $sfModuleRepository */
-        $sfModuleRepository = $this->get('symfonymodule_repository'); // Or: $sfModuleRepository = $em->getRepository(SymfonyModule::class);
+        $sfModuleRepository = $this->service('symfonymodule_repository'); // Or: $sfModuleRepository = $em->getRepository(SymfonyModule::class);
 
         $formSMTP = $this->createform(SymfonyModuleSMTPType::class);
         $formSMTP->handleRequest($req);
